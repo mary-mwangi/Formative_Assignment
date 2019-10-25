@@ -1,0 +1,41 @@
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int key = 2;
+
+int search(){
+    int Array [5] = {3, 8, 4, 10, 80};
+
+    for(int j = 0; j < sizeof(Array); j++){
+            if (Array[j] == key){
+                return 1; 
+            }
+        }
+        return 0;
+}
+
+void main()
+{
+    int i = fork ();
+
+    if (i == 0)
+    {
+        printf("Child process\n");
+        printf("Number to be searched is %d\n", key);
+    }
+
+    if (i > 0){
+        if (search() == 1){
+            printf("Parent process\n");
+            printf("key is present in array\n");
+        }
+        else{
+            printf("Parent process\n");
+            printf("Key not found!!\n");
+        }
+    }
+
+}
