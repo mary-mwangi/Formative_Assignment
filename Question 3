@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include <signal.h>
+#include <unistd.h>
+#include <pthread.h>
+
+
+void*  askAge(void *args)
+{
+    int age;
+    printf("What is your age? : ");
+    scanf("%d",&age);
+    printf("\nThe age you entered is: %d\n", age);
+}
+
+void runFn(){
+    printf("Running Fn\n");
+}
+
+int main()
+{
+    pthread_t tid;
+
+    pthread_create(&tid,NULL,askAge,NULL);
+    pthread_join(tid, NULL);
+    runFn();
+
+    return 0;
+}
