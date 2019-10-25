@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <signal.h>
+#include <unistd.h>
+
+void erastus(int mary)
+{
+    if (mary == SIGTSTP)
+    {
+        printf("Signal Recieved\n");
+    }
+}
+
+int main()
+{
+    signal(SIGTSTP, erastus);
+    while (1)
+    {
+
+        printf("infinite loop\n");
+        sleep(2);
+    }
+    return 0;
+}
